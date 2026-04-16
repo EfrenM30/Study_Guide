@@ -1,0 +1,2424 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Complete Geometry Study Guide</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #0f2044;
+        --blue: #1a3a6e;
+        --mid-blue: #2456a4;
+        --accent: #e8a020;
+        --accent-light: #fff4e0;
+        --light-blue: #edf3fc;
+        --teal: #0e7f6e;
+        --teal-light: #e2f5f2;
+        --coral: #c64b2d;
+        --coral-light: #fdf0ec;
+        --green: #2a7a3b;
+        --green-light: #edf7ef;
+        --purple: #5a3dab;
+        --purple-light: #f0ecfc;
+        --text: #1a1a2e;
+        --text-muted: #5a5a7a;
+        --border: #d0d8e8;
+        --bg: #f8f9fd;
+        --white: #ffffff;
+        --section-bg: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Source Sans 3", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        font-size: 16px;
+        line-height: 1.7;
+      }
+
+      .cover {
+        background: var(--navy);
+        color: white;
+        padding: 80px 60px 60px;
+        position: relative;
+        overflow: hidden;
+      }
+      .cover::before {
+        content: "";
+        position: absolute;
+        top: -80px;
+        right: -80px;
+        width: 400px;
+        height: 400px;
+        border: 2px solid rgba(232, 160, 32, 0.2);
+        border-radius: 50%;
+      }
+      .cover::after {
+        content: "";
+        position: absolute;
+        bottom: -60px;
+        left: -60px;
+        width: 300px;
+        height: 300px;
+        border: 2px solid rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+      }
+      .cover-label {
+        font-size: 12px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
+      .cover h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 52px;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 20px;
+        max-width: 600px;
+      }
+      .cover p {
+        font-size: 17px;
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 500px;
+        margin-bottom: 40px;
+      }
+      .cover-topics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        position: relative;
+        z-index: 1;
+      }
+      .cover-tag {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.85);
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+      }
+
+      .toc {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        padding: 40px 60px;
+      }
+      .toc h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 22px;
+        color: var(--navy);
+        margin-bottom: 24px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--accent);
+        display: inline-block;
+      }
+      .toc-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 8px;
+      }
+      .toc-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 0;
+        text-decoration: none;
+        color: var(--mid-blue);
+        font-size: 14px;
+        border-bottom: 1px solid var(--border);
+        transition: color 0.2s;
+      }
+      .toc-item:hover {
+        color: var(--accent);
+      }
+      .toc-num {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--text-muted);
+        min-width: 24px;
+      }
+
+      .content {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 40px 80px;
+      }
+
+      .chapter {
+        margin-top: 60px;
+      }
+
+      .chapter-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        margin-bottom: 32px;
+        padding: 28px 32px;
+        border-radius: 12px;
+        position: relative;
+      }
+      .ch-euclidean {
+        background: linear-gradient(135deg, #0f2044 0%, #1a3a6e 100%);
+      }
+      .ch-angles {
+        background: linear-gradient(135deg, #0e5a4e 0%, #0e7f6e 100%);
+      }
+      .ch-transforms {
+        background: linear-gradient(135deg, #4a2d94 0%, #6b4fd4 100%);
+      }
+      .ch-lines {
+        background: linear-gradient(135deg, #1a5276 0%, #2471a3 100%);
+      }
+      .ch-triangles {
+        background: linear-gradient(135deg, #7d3c12 0%, #b7540e 100%);
+      }
+      .ch-congruence {
+        background: linear-gradient(135deg, #1a4a2a 0%, #2d7a3e 100%);
+      }
+      .ch-similarity {
+        background: linear-gradient(135deg, #5a2d00 0%, #9a4d00 100%);
+      }
+
+      .chapter-num {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+      .chapter-header h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 30px;
+        color: white;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .chapter-header p {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 15px;
+        max-width: 480px;
+      }
+      .ch-icon {
+        width: 64px;
+        height: 64px;
+        min-width: 64px;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+      }
+
+      .topic {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        margin-bottom: 24px;
+        overflow: hidden;
+      }
+      .topic-title {
+        padding: 18px 24px;
+        font-family: "Playfair Display", serif;
+        font-size: 19px;
+        font-weight: 600;
+        color: var(--navy);
+        border-bottom: 1px solid var(--border);
+        background: #fafbff;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .topic-title .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        min-width: 10px;
+      }
+      .topic-body {
+        padding: 24px;
+      }
+
+      .definition {
+        background: var(--light-blue);
+        border-left: 4px solid var(--mid-blue);
+        border-radius: 0 8px 8px 0;
+        padding: 14px 18px;
+        margin: 16px 0;
+      }
+      .definition .def-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--mid-blue);
+        margin-bottom: 6px;
+      }
+      .definition p {
+        font-size: 15px;
+        color: var(--text);
+      }
+
+      .theorem {
+        background: var(--teal-light);
+        border-left: 4px solid var(--teal);
+        border-radius: 0 8px 8px 0;
+        padding: 14px 18px;
+        margin: 16px 0;
+      }
+      .theorem .thm-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 6px;
+      }
+
+      .example-box {
+        background: var(--accent-light);
+        border: 1px solid #f0c060;
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin: 16px 0;
+      }
+      .example-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #b07010;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .example-label::before {
+        content: "";
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        background: var(--accent);
+        border-radius: 50%;
+      }
+
+      .formula-box {
+        background: var(--navy);
+        border-radius: 8px;
+        padding: 14px 20px;
+        margin: 16px 0;
+        text-align: center;
+      }
+      .formula-box .formula-label {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      .formula-box .formula {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 18px;
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      .note {
+        background: var(--purple-light);
+        border-left: 4px solid var(--purple);
+        border-radius: 0 8px 8px 0;
+        padding: 12px 16px;
+        margin: 14px 0;
+        font-size: 14px;
+        color: #3d2880;
+      }
+      .note strong {
+        color: var(--purple);
+      }
+
+      .step-list {
+        counter-reset: steps;
+        list-style: none;
+        margin: 14px 0;
+      }
+      .step-list li {
+        counter-increment: steps;
+        position: relative;
+        padding: 10px 0 10px 44px;
+        border-bottom: 1px solid var(--border);
+        font-size: 15px;
+      }
+      .step-list li:last-child {
+        border-bottom: none;
+      }
+      .step-list li::before {
+        content: counter(steps);
+        position: absolute;
+        left: 0;
+        top: 10px;
+        width: 26px;
+        height: 26px;
+        background: var(--mid-blue);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 600;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .angle-types {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin: 16px 0;
+      }
+      .angle-card {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 14px;
+        text-align: center;
+      }
+      .angle-card .range {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 4px;
+      }
+      .angle-card .name {
+        font-size: 13px;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .congruence-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin: 16px 0;
+      }
+      .cong-card {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 14px 10px;
+        text-align: center;
+        background: #fafbff;
+      }
+      .cong-card .abbr {
+        font-family: "Playfair Display", serif;
+        font-size: 22px;
+        color: var(--mid-blue);
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .cong-card .full {
+        font-size: 12px;
+        color: var(--text-muted);
+        line-height: 1.4;
+      }
+
+      .transform-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+        margin: 16px 0;
+      }
+      .t-card {
+        border-radius: 10px;
+        padding: 18px;
+        border: 1px solid var(--border);
+      }
+      .t-card h4 {
+        font-family: "Playfair Display", serif;
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+      .t-card .rule {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        color: var(--mid-blue);
+        background: var(--light-blue);
+        padding: 6px 10px;
+        border-radius: 6px;
+        margin: 8px 0;
+        display: inline-block;
+      }
+      .t-card p {
+        font-size: 14px;
+        color: var(--text-muted);
+      }
+
+      .points-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin: 16px 0;
+      }
+      .point-card {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 14px;
+      }
+      .point-card h4 {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: 4px;
+      }
+      .point-card p {
+        font-size: 13px;
+        color: var(--text-muted);
+      }
+
+      .divider {
+        height: 1px;
+        background: var(--border);
+        margin: 20px 0;
+      }
+
+      .warning-box {
+        background: var(--coral-light);
+        border-left: 4px solid var(--coral);
+        border-radius: 0 8px 8px 0;
+        padding: 12px 16px;
+        margin: 14px 0;
+        font-size: 14px;
+        color: #8b2710;
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin: 14px 0;
+      }
+
+      table.proof-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        margin: 14px 0;
+      }
+      table.proof-table th {
+        background: var(--navy);
+        color: white;
+        padding: 10px 16px;
+        text-align: left;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+      table.proof-table td {
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
+      table.proof-table tr:nth-child(even) td {
+        background: #f8f9ff;
+      }
+      table.proof-table .step-num {
+        font-family: "JetBrains Mono", monospace;
+        color: var(--mid-blue);
+        font-weight: 500;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        margin: 2px;
+      }
+
+      p {
+        margin-bottom: 12px;
+      }
+      p:last-child {
+        margin-bottom: 0;
+      }
+      ul,
+      ol {
+        padding-left: 20px;
+        margin: 10px 0;
+      }
+      li {
+        margin-bottom: 6px;
+        font-size: 15px;
+      }
+
+      h3 {
+        font-family: "Source Sans 3", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin: 20px 0 10px;
+      }
+
+      .section-intro {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin: 0 0 28px;
+        font-size: 15px;
+        color: var(--text-muted);
+        line-height: 1.7;
+      }
+
+      @media (max-width: 650px) {
+        .cover {
+          padding: 40px 24px;
+        }
+        .cover h1 {
+          font-size: 34px;
+        }
+        .content {
+          padding: 0 16px 60px;
+        }
+        .toc {
+          padding: 28px 24px;
+        }
+        .congruence-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .transform-cards,
+        .two-col,
+        .angle-types,
+        .points-grid {
+          grid-template-columns: 1fr;
+        }
+        .chapter-header {
+          padding: 20px;
+        }
+        .chapter-header h2 {
+          font-size: 22px;
+        }
+        .toc-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- COVER -->
+    <div class="cover">
+      <div style="position: relative; z-index: 1">
+        <div class="cover-label">Complete Study Guide</div>
+        <h1>Euclidean Geometry</h1>
+        <p>
+          A full walkthrough of every major topic — with definitions, theorems,
+          formulas, and worked examples.
+        </p>
+        <div class="cover-topics">
+          <span class="cover-tag">Foundations</span>
+          <span class="cover-tag">Angle Relationships</span>
+          <span class="cover-tag">Transformations</span>
+          <span class="cover-tag">Parallel Lines</span>
+          <span class="cover-tag">Triangle Theorems</span>
+          <span class="cover-tag">Congruence</span>
+          <span class="cover-tag">Similarity</span>
+          <span class="cover-tag">Proofs</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc">
+      <h2>Table of Contents</h2>
+      <div class="toc-grid">
+        <a class="toc-item" href="#ch1"
+          ><span class="toc-num">01</span>Foundations of Geometry</a
+        >
+        <a class="toc-item" href="#ch1"
+          ><span class="toc-num">02</span>Measuring Length & Angles</a
+        >
+        <a class="toc-item" href="#ch1"
+          ><span class="toc-num">03</span>Introduction to Proofs</a
+        >
+        <a class="toc-item" href="#ch2"
+          ><span class="toc-num">04</span>Linear Pairs & Vertical Angles</a
+        >
+        <a class="toc-item" href="#ch2"
+          ><span class="toc-num">05</span>Complementary & Supplementary</a
+        >
+        <a class="toc-item" href="#ch3"
+          ><span class="toc-num">06</span>Transformations Overview</a
+        >
+        <a class="toc-item" href="#ch3"
+          ><span class="toc-num">07</span>Reflections</a
+        >
+        <a class="toc-item" href="#ch3"
+          ><span class="toc-num">08</span>Translations</a
+        >
+        <a class="toc-item" href="#ch3"
+          ><span class="toc-num">09</span>Rotations</a
+        >
+        <a class="toc-item" href="#ch3"
+          ><span class="toc-num">10</span>Compositions & Symmetry</a
+        >
+        <a class="toc-item" href="#ch4"
+          ><span class="toc-num">11</span>Parallel & Perpendicular Lines</a
+        >
+        <a class="toc-item" href="#ch4"
+          ><span class="toc-num">12</span>Transversals & Angle Pairs</a
+        >
+        <a class="toc-item" href="#ch4"
+          ><span class="toc-num">13</span>Proving Lines Parallel</a
+        >
+        <a class="toc-item" href="#ch4"
+          ><span class="toc-num">14</span>Writing Linear Equations</a
+        >
+        <a class="toc-item" href="#ch5"
+          ><span class="toc-num">15</span>Triangle Angle Theorems</a
+        >
+        <a class="toc-item" href="#ch5"
+          ><span class="toc-num">16</span>Triangle Classification</a
+        >
+        <a class="toc-item" href="#ch5"
+          ><span class="toc-num">17</span>Triangle Inequalities</a
+        >
+        <a class="toc-item" href="#ch5"
+          ><span class="toc-num">18</span>Isosceles Triangles</a
+        >
+        <a class="toc-item" href="#ch5"
+          ><span class="toc-num">19</span>Triangle Centers</a
+        >
+        <a class="toc-item" href="#ch6"
+          ><span class="toc-num">20</span>Congruent Figures & SSS/SAS</a
+        >
+        <a class="toc-item" href="#ch6"
+          ><span class="toc-num">21</span>ASA, AAS, HL</a
+        >
+        <a class="toc-item" href="#ch7"
+          ><span class="toc-num">22</span>Dilations & Similar Figures</a
+        >
+        <a class="toc-item" href="#ch7"
+          ><span class="toc-num">23</span>Triangle Similarity</a
+        >
+        <a class="toc-item" href="#ch7"
+          ><span class="toc-num">24</span>Right Triangle Similarity</a
+        >
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- ===== CHAPTER 1 ===== -->
+      <div class="chapter" id="ch1">
+        <div class="chapter-header ch-euclidean">
+          <div class="ch-icon">📐</div>
+          <div>
+            <div class="chapter-num">Chapter 1</div>
+            <h2>Foundations of Geometry</h2>
+            <p>
+              Undefined terms, defined terms, measurement, and the logic of
+              proofs
+            </p>
+          </div>
+        </div>
+
+        <!-- Topic 1 -->
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #1a3a6e"></div>
+            What is Euclidean Geometry?
+          </div>
+          <div class="topic-body">
+            <p>
+              Euclidean geometry is the study of flat surfaces and the figures
+              drawn on them. It was systematized by the ancient Greek
+              mathematician <strong>Euclid</strong> around 300 BCE in his famous
+              work <em>Elements</em>. Everything in this branch of geometry is
+              built on a small set of rules called <strong>postulates</strong>,
+              from which all other facts — called <strong>theorems</strong> —
+              are logically derived.
+            </p>
+            <div class="definition">
+              <div class="def-label">Key Concept</div>
+              <p>
+                <strong>Postulate:</strong> A statement accepted as true without
+                proof.<br />
+                <strong>Theorem:</strong> A statement that has been proven using
+                postulates, definitions, and previously proven theorems.
+              </p>
+            </div>
+            <div class="note">
+              <strong>Think of it this way:</strong> Postulates are the "rules
+              of the game." Theorems are things you can prove by following those
+              rules carefully.
+            </div>
+          </div>
+        </div>
+
+        <!-- Topic 2 -->
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #1a3a6e"></div>
+            Undefined and Defined Terms
+          </div>
+          <div class="topic-body">
+            <p>
+              Geometry starts with a small set of terms that are not formally
+              defined — they are understood through intuition. From these, we
+              define all other geometric objects.
+            </p>
+            <h3>Undefined Terms (The Big Three)</h3>
+            <div class="two-col">
+              <div class="definition">
+                <div class="def-label">Point</div>
+                <p>
+                  An exact location in space. It has no size, no length, no
+                  width. Represented by a dot and named with a capital letter.
+                  <em>Example: Point A</em>
+                </p>
+              </div>
+              <div class="definition">
+                <div class="def-label">Line</div>
+                <p>
+                  A perfectly straight path that extends infinitely in both
+                  directions. It has no thickness. Named by two points on it or
+                  a lowercase letter. <em>Example: Line AB or line ℓ</em>
+                </p>
+              </div>
+            </div>
+            <div class="definition">
+              <div class="def-label">Plane</div>
+              <p>
+                A flat, two-dimensional surface that extends infinitely in all
+                directions. Think of an infinite sheet of paper. Named by three
+                non-collinear points or a script letter.
+                <em>Example: Plane ABC or Plane P</em>
+              </p>
+            </div>
+            <h3>Defined Terms</h3>
+            <ul>
+              <li>
+                <strong>Line Segment (AB):</strong> Part of a line with two
+                endpoints. It has a measurable length.
+              </li>
+              <li>
+                <strong>Ray (→AB):</strong> Starts at one point (endpoint) and
+                extends infinitely in one direction.
+              </li>
+              <li>
+                <strong>Angle (∠):</strong> Formed by two rays that share a
+                common endpoint called the <strong>vertex</strong>.
+              </li>
+              <li>
+                <strong>Collinear points:</strong> Points that all lie on the
+                same line.
+              </li>
+              <li>
+                <strong>Coplanar points:</strong> Points that all lie on the
+                same plane.
+              </li>
+              <li>
+                <strong>Midpoint:</strong> The point that divides a segment into
+                two equal parts.
+              </li>
+              <li>
+                <strong>Bisector:</strong> A ray, line, or segment that cuts
+                another figure into two equal parts.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Topic 3 -->
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #1a3a6e"></div>
+            Measuring Length and Angles
+          </div>
+          <div class="topic-body">
+            <h3>Measuring Distance Between Two Points</h3>
+            <p>
+              When two points are placed on a coordinate plane, you can find the
+              exact distance between them using the
+              <strong>Distance Formula</strong>, which is derived from the
+              Pythagorean Theorem.
+            </p>
+            <div class="formula-box">
+              <div class="formula-label">Distance Formula</div>
+              <div class="formula">d = √[(x₂ − x₁)² + (y₂ − y₁)²]</div>
+            </div>
+            <div class="example-box">
+              <div class="example-label">Worked Example</div>
+              <p>
+                <strong>Find the distance between A(0, 0) and B(3, 4).</strong>
+              </p>
+              <ol class="step-list">
+                <li>Identify coordinates: x₁ = 0, y₁ = 0, x₂ = 3, y₂ = 4</li>
+                <li>Plug into formula: d = √[(3−0)² + (4−0)²]</li>
+                <li>Simplify: d = √[9 + 16] = √25</li>
+                <li>Answer: d = <strong>5 units</strong></li>
+              </ol>
+            </div>
+            <h3>Measuring Angles</h3>
+            <p>
+              Angles are measured in <strong>degrees (°)</strong> using a
+              protractor. There are four main types:
+            </p>
+            <div class="angle-types">
+              <div class="angle-card">
+                <div class="range" style="color: #1a3a6e">0° < θ < 90°</div>
+                <div class="name">Acute Angle</div>
+              </div>
+              <div class="angle-card">
+                <div class="range" style="color: #0e7f6e">θ = 90°</div>
+                <div class="name">Right Angle</div>
+              </div>
+              <div class="angle-card">
+                <div class="range" style="color: #b7540e">90° < θ < 180°</div>
+                <div class="name">Obtuse Angle</div>
+              </div>
+              <div class="angle-card">
+                <div class="range" style="color: #5a3dab">θ = 180°</div>
+                <div class="name">Straight Angle</div>
+              </div>
+            </div>
+            <div class="note">
+              <strong>Also important:</strong> A
+              <strong>reflex angle</strong> is greater than 180° but less than
+              360°. A <strong>full rotation</strong> is exactly 360°.
+            </div>
+            <div class="example-box">
+              <div class="example-label">Midpoint Formula</div>
+              <p>
+                The midpoint M between two points A(x₁, y₁) and B(x₂, y₂) is:
+              </p>
+              <div class="formula-box" style="margin-top: 10px">
+                <div class="formula">M = ((x₁+x₂)/2, (y₁+y₂)/2)</div>
+              </div>
+              <p style="margin-top: 10px">
+                <strong>Example:</strong> Midpoint of A(2, 4) and B(6, 10) → M =
+                (4, 7)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Topic 4 -->
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #1a3a6e"></div>
+            Introduction to Proofs
+          </div>
+          <div class="topic-body">
+            <p>
+              A <strong>proof</strong> is a formal logical argument that shows a
+              mathematical statement is true. Every step in a proof must be
+              justified by a <strong>reason</strong>: a definition, postulate,
+              or theorem.
+            </p>
+            <h3>Types of Proofs</h3>
+            <ul>
+              <li>
+                <strong>Two-Column Proof:</strong> Statements in the left
+                column, reasons in the right column. Most common in high school
+                geometry.
+              </li>
+              <li>
+                <strong>Paragraph Proof:</strong> Written as sentences
+                explaining the logical flow.
+              </li>
+              <li>
+                <strong>Flowchart Proof:</strong> Uses boxes and arrows to show
+                the logical connections.
+              </li>
+            </ul>
+            <h3>Common Proof Reasons</h3>
+            <ul>
+              <li>
+                <strong>Given</strong> — information stated as true at the start
+              </li>
+              <li>
+                <strong>Definition of ___</strong> — using the meaning of a term
+              </li>
+              <li>
+                <strong>Reflexive Property</strong> — a = a (any segment/angle
+                equals itself)
+              </li>
+              <li>
+                <strong>Symmetric Property</strong> — if a = b, then b = a
+              </li>
+              <li>
+                <strong>Transitive Property</strong> — if a = b and b = c, then
+                a = c
+              </li>
+              <li>
+                <strong>Substitution</strong> — replacing one equal expression
+                with another
+              </li>
+            </ul>
+            <div class="example-box">
+              <div class="example-label">Sample Two-Column Proof</div>
+              <p>
+                <strong>Prove:</strong> If ∠1 and ∠2 are supplementary and ∠2 =
+                50°, then ∠1 = 130°.
+              </p>
+              <table class="proof-table" style="margin-top: 12px">
+                <tr>
+                  <th>Statements</th>
+                  <th>Reasons</th>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="step-num">1.</span> ∠1 and ∠2 are supplementary
+                  </td>
+                  <td>Given</td>
+                </tr>
+                <tr>
+                  <td><span class="step-num">2.</span> ∠1 + ∠2 = 180°</td>
+                  <td>Definition of supplementary angles</td>
+                </tr>
+                <tr>
+                  <td><span class="step-num">3.</span> ∠2 = 50°</td>
+                  <td>Given</td>
+                </tr>
+                <tr>
+                  <td><span class="step-num">4.</span> ∠1 + 50° = 180°</td>
+                  <td>Substitution (step 3 into step 2)</td>
+                </tr>
+                <tr>
+                  <td><span class="step-num">5.</span> ∠1 = 130°</td>
+                  <td>Subtraction Property of Equality</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CHAPTER 2 ===== -->
+      <div class="chapter" id="ch2">
+        <div class="chapter-header ch-angles">
+          <div class="ch-icon">∠</div>
+          <div>
+            <div class="chapter-num">Chapter 2</div>
+            <h2>Angle Relationships</h2>
+            <p>
+              Linear pairs, vertical angles, complementary and supplementary
+              relationships
+            </p>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #0e7f6e"></div>
+            Linear Pairs and Vertical Angles
+          </div>
+          <div class="topic-body">
+            <div class="definition">
+              <div class="def-label">Linear Pair</div>
+              <p>
+                Two adjacent angles that together form a straight line (180°).
+                They share a common vertex and a common ray, and their
+                non-shared rays form a straight line.
+                <em>The two angles are always supplementary.</em>
+              </p>
+            </div>
+            <div class="definition">
+              <div class="def-label">Vertical Angles</div>
+              <p>
+                When two lines intersect, they form two pairs of opposite angles
+                called vertical angles. Vertical angles are always
+                <strong>congruent</strong> (equal in measure).
+              </p>
+            </div>
+            <div class="example-box">
+              <div class="example-label">Visual Setup</div>
+              <p>
+                When lines AB and CD intersect at point E, four angles are
+                formed:<br />
+                • ∠AEC and ∠BED are vertical angles → ∠AEC = ∠BED<br />
+                • ∠AED and ∠BEC are vertical angles → ∠AED = ∠BEC<br />
+                • ∠AEC and ∠AED are a linear pair → ∠AEC + ∠AED = 180°
+              </p>
+            </div>
+            <div class="example-box">
+              <div class="example-label">Worked Example</div>
+              <p>
+                <strong
+                  >Two lines intersect. One angle measures 65°. Find the other
+                  three angles.</strong
+                >
+              </p>
+              <ol class="step-list">
+                <li>
+                  The vertical angle is also <strong>65°</strong> (vertical
+                  angles are equal).
+                </li>
+                <li>
+                  The linear pair partner = 180° − 65° = <strong>115°</strong>.
+                </li>
+                <li>
+                  The fourth angle (vertical to the 115°) =
+                  <strong>115°</strong>.
+                </li>
+                <li>So the four angles are: 65°, 115°, 65°, 115°.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #0e7f6e"></div>
+            Complementary and Supplementary Angles
+          </div>
+          <div class="topic-body">
+            <div class="two-col">
+              <div class="definition">
+                <div class="def-label">Complementary Angles</div>
+                <p>
+                  Two angles whose measures add up to <strong>90°</strong>. They
+                  do not have to be adjacent — they just need to sum to 90°.
+                </p>
+              </div>
+              <div class="definition">
+                <div class="def-label">Supplementary Angles</div>
+                <p>
+                  Two angles whose measures add up to <strong>180°</strong>.
+                  Again, they do not need to be adjacent to be supplementary.
+                </p>
+              </div>
+            </div>
+            <div class="formula-box">
+              <div class="formula-label">Quick Reference</div>
+              <div class="formula">
+                Complementary: A + B = 90°&nbsp;&nbsp;&nbsp;&nbsp;Supplementary:
+                A + B = 180°
+              </div>
+            </div>
+            <div class="example-box">
+              <div class="example-label">Worked Examples</div>
+              <p>
+                <strong>Example 1:</strong> Find the complement of 37°.<br />
+                Complement = 90° − 37° = <strong>53°</strong>
+              </p>
+              <div class="divider"></div>
+              <p>
+                <strong>Example 2:</strong> Find the supplement of 112°.<br />
+                Supplement = 180° − 112° = <strong>68°</strong>
+              </p>
+              <div class="divider"></div>
+              <p>
+                <strong>Example 3 (Algebra):</strong> Two complementary angles
+                have measures (2x + 10)° and (x − 4)°. Find x.<br />
+                (2x + 10) + (x − 4) = 90<br />
+                3x + 6 = 90<br />
+                3x = 84<br />
+                x = <strong>28</strong>
+              </p>
+            </div>
+            <div class="note">
+              <strong>Memory trick:</strong> <em>C</em>omplementary =
+              <em>C</em>orner (right angle, 90°). <em>S</em>upplementary =
+              <em>S</em>traight line (180°).
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CHAPTER 3 ===== -->
+      <div class="chapter" id="ch3">
+        <div class="chapter-header ch-transforms">
+          <div class="ch-icon">↺</div>
+          <div>
+            <div class="chapter-num">Chapter 3</div>
+            <h2>Transformations</h2>
+            <p>
+              Moving and changing figures using reflections, translations,
+              rotations, and dilations
+            </p>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #6b4fd4"></div>
+            Overview of Transformations
+          </div>
+          <div class="topic-body">
+            <p>
+              A <strong>transformation</strong> is a rule that moves or changes
+              every point of a figure in the coordinate plane. The original
+              figure is called the <strong>pre-image</strong>, and the result is
+              the <strong>image</strong>.
+            </p>
+            <div class="transform-cards">
+              <div
+                class="t-card"
+                style="background: #f0ecfc; border-color: #c4b4f0"
+              >
+                <h4 style="color: #5a3dab">Translation</h4>
+                <span class="rule">(x, y) → (x+a, y+b)</span>
+                <p>
+                  Slides the figure without flipping or rotating.
+                  <em>Preserves size and shape.</em>
+                </p>
+              </div>
+              <div
+                class="t-card"
+                style="background: #e2f5f2; border-color: #9fd5cc"
+              >
+                <h4 style="color: #0e6b5a">Reflection</h4>
+                <span class="rule">(x, y) → (−x, y) or (x, −y)</span>
+                <p>
+                  Flips the figure over a line of reflection.
+                  <em>Preserves size and shape.</em>
+                </p>
+              </div>
+              <div
+                class="t-card"
+                style="background: #edf3fc; border-color: #a0beec"
+              >
+                <h4 style="color: #1a3a6e">Rotation</h4>
+                <span class="rule">(x, y) → (−y, x) for 90°</span>
+                <p>
+                  Turns the figure around a fixed point.
+                  <em>Preserves size and shape.</em>
+                </p>
+              </div>
+              <div
+                class="t-card"
+                style="background: #fff4e0; border-color: #f0c060"
+              >
+                <h4 style="color: #8a5a00">Dilation</h4>
+                <span class="rule">(x, y) → (kx, ky)</span>
+                <p>
+                  Scales the figure by a factor k.
+                  <em>Preserves shape only — NOT size.</em>
+                </p>
+              </div>
+            </div>
+            <div class="theorem">
+              <div class="thm-label">Key Distinction</div>
+              <p>
+                Translations, reflections, and rotations are called
+                <strong>rigid motions (isometries)</strong> — they preserve both
+                size and shape, keeping figures congruent. Dilations are
+                <strong>not</strong> rigid motions because they change size,
+                creating similar (not congruent) figures.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #6b4fd4"></div>
+            Reflections
+          </div>
+          <div class="topic-body">
+            <p>
+              A <strong>reflection</strong> flips a figure over a line called
+              the <strong>line of reflection</strong>. Every point in the image
+              is the same distance from the line of reflection as the
+              corresponding point in the pre-image, but on the opposite side.
+            </p>
+            <h3>Coordinate Rules for Common Reflections</h3>
+            <table class="proof-table">
+              <tr>
+                <th>Line of Reflection</th>
+                <th>Rule</th>
+                <th>Example</th>
+              </tr>
+              <tr>
+                <td>x-axis</td>
+                <td>(x, y) → (x, −y)</td>
+                <td>(3, 5) → (3, −5)</td>
+              </tr>
+              <tr>
+                <td>y-axis</td>
+                <td>(x, y) → (−x, y)</td>
+                <td>(3, 5) → (−3, 5)</td>
+              </tr>
+              <tr>
+                <td>y = x</td>
+                <td>(x, y) → (y, x)</td>
+                <td>(3, 5) → (5, 3)</td>
+              </tr>
+              <tr>
+                <td>y = −x</td>
+                <td>(x, y) → (−y, −x)</td>
+                <td>(3, 5) → (−5, −3)</td>
+              </tr>
+              <tr>
+                <td>Origin</td>
+                <td>(x, y) → (−x, −y)</td>
+                <td>(3, 5) → (−3, −5)</td>
+              </tr>
+            </table>
+            <div class="example-box">
+              <div class="example-label">Worked Example</div>
+              <p>
+                <strong
+                  >Reflect triangle with vertices A(1,2), B(3,4), C(5,1) across
+                  the y-axis.</strong
+                >
+              </p>
+              <p>
+                Apply rule (x, y) → (−x, y):<br />
+                A(1, 2) → A'(−1, 2)<br />
+                B(3, 4) → B'(−3, 4)<br />
+                C(5, 1) → C'(−5, 1)
+              </p>
+            </div>
+            <div class="note">
+              <strong>Important:</strong> A reflection across the x-axis negates
+              the y. A reflection across the y-axis negates the x. Don't mix
+              them up!
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #6b4fd4"></div>
+            Translations
+          </div>
+          <div class="topic-body">
+            <div class="definition">
+              <div class="def-label">Translation</div>
+              <p>
+                A transformation that moves every point of a figure the same
+                distance in the same direction. It is described by a
+                <strong>translation vector</strong> &lt;a, b&gt;, where a is
+                horizontal movement and b is vertical movement.
+              </p>
+            </div>
+            <div class="formula-box">
+              <div class="formula-label">Translation Rule</div>
+              <div class="formula">(x, y) → (x + a, y + b)</div>
+            </div>
+            <div class="example-box">
+              <div class="example-label">Worked Example</div>
+              <p>
+                <strong>Translate point P(2, −3) by vector &lt;4, 6&gt;.</strong
+                ><br />
+                New x = 2 + 4 = <strong>6</strong><br />
+                New y = −3 + 6 = <strong>3</strong><br />
+                Image point P'(6, 3)
+              </p>
+              <div class="divider"></div>
+              <p>
+                <strong
+                  >Translate triangle A(0,0), B(2,0), C(1,3) by &lt;−3,
+                  2&gt;.</strong
+                ><br />
+                A' = (0−3, 0+2) = (−3, 2)<br />
+                B' = (2−3, 0+2) = (−1, 2)<br />
+                C' = (1−3, 3+2) = (−2, 5)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #6b4fd4"></div>
+            Rotations
+          </div>
+          <div class="topic-body">
+            <p>
+              A <strong>rotation</strong> turns a figure around a fixed point
+              called the <strong>center of rotation</strong>. The amount of turn
+              is the <strong>angle of rotation</strong>, measured in degrees.
+              Rotations are usually
+              <strong>counterclockwise (positive)</strong> unless stated
+              otherwise.
+            </p>
+            <h3>Standard Rotation Rules (about the Origin)</h3>
+            <table class="proof-table">
+              <tr>
+                <th>Rotation</th>
+                <th>Rule</th>
+                <th>Example: P(3, 5)</th>
+              </tr>
+              <tr>
+                <td>90° counterclockwise</td>
+                <td>(x, y) → (−y, x)</td>
+                <td>(3, 5) → (−5, 3)</td>
+              </tr>
+              <tr>
+                <td>180°</td>
+                <td>(x, y) → (−x, −y)</td>
+                <td>(3, 5) → (−3, −5)</td>
+              </tr>
+              <tr>
+                <td>270° counterclockwise</td>
+                <td>(x, y) → (y, −x)</td>
+                <td>(3, 5) → (5, −3)</td>
+              </tr>
+              <tr>
+                <td>360° (full rotation)</td>
+                <td>(x, y) → (x, y)</td>
+                <td>(3, 5) → (3, 5)</td>
+              </tr>
+            </table>
+            <div class="note">
+              <strong>Trick:</strong> For 90° CCW: negate x, then swap. For
+              180°: negate both. For 270° CCW (same as 90° CW): negate y, then
+              swap.
+            </div>
+            <div class="example-box">
+              <div class="example-label">Worked Example</div>
+              <p>
+                <strong
+                  >Rotate A(4, −2) by 90° counterclockwise about the
+                  origin.</strong
+                ><br />
+                Rule: (x, y) → (−y, x)<br />
+                A(4, −2) → A'(−(−2), 4) = A'(<strong>2, 4</strong>)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #6b4fd4"></div>
+            Compositions of Transformations
+          </div>
+          <div class="topic-body">
+            <div class="definition">
+              <div class="def-label">Composition</div>
+              <p>
+                A <strong>composition</strong> is when you apply two or more
+                transformations in sequence. The result of the first
+                transformation becomes the input for the second.
+              </p>
+            </div>
+            <div class="warning-box">
+              <strong>Order matters!</strong> A reflection followed by a
+              translation gives a different result than a translation followed
+              by a reflection. Always apply transformations from right to left
+              (or as listed, left to right depending on notation).
+            </div>
+            <div class="example-box">
+              <div class="example-label">Worked Example</div>
+              <p>
+                <strong
+                  >Reflect P(2, 3) across the x-axis, then translate by &lt;1,
+                  4&gt;.</strong
+                >
+              </p>
+              <ol class="step-list">
+                <li>Reflect across x-axis: (2, 3) → (2, −3)</li>
+                <li>
+                  Translate by &lt;1, 4&gt;: (2+1, −3+4) =
+                  <strong>(3, 1)</strong>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #6b4fd4"></div>
+            Symmetry
+          </div>
+          <div class="topic-body">
+            <div class="definition">
+              <div class="def-label">Line (Reflectional) Symmetry</div>
+              <p>
+                A figure has line symmetry if it can be folded along a line so
+                that both halves match exactly. The fold line is the
+                <strong>line of symmetry</strong>.
+              </p>
+            </div>
+            <div class="definition">
+              <div class="def-label">Rotational Symmetry</div>
+              <p>
+                A figure has rotational symmetry if it looks the same after
+                being rotated by some angle less than 360°. The minimum angle
+                that maps the figure to itself is the
+                <strong>angle of rotational symmetry</strong>.
+              </p>
+            </div>
+            <table class="proof-table" style="margin-top: 14px">
+              <tr>
+                <th>Figure</th>
+                <th>Lines of Symmetry</th>
+                <th>Rotational Symmetry</th>
+              </tr>
+              <tr>
+                <td>Equilateral Triangle</td>
+                <td>3</td>
+                <td>120°, 240°, 360°</td>
+              </tr>
+              <tr>
+                <td>Square</td>
+                <td>4</td>
+                <td>90°, 180°, 270°, 360°</td>
+              </tr>
+              <tr>
+                <td>Regular Pentagon</td>
+                <td>5</td>
+                <td>72°, 144°, 216°, 288°, 360°</td>
+              </tr>
+              <tr>
+                <td>Rectangle (non-square)</td>
+                <td>2</td>
+                <td>180°, 360°</td>
+              </tr>
+              <tr>
+                <td>Circle</td>
+                <td>∞</td>
+                <td>Any angle</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CHAPTER 4 ===== -->
+      <div class="chapter" id="ch4">
+        <div class="chapter-header ch-lines">
+          <div class="ch-icon">∥</div>
+          <div>
+            <div class="chapter-num">Chapter 4</div>
+            <h2>Lines and Their Relationships</h2>
+            <p>
+              Parallel lines, perpendicular lines, transversals, and writing
+              equations
+            </p>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #2471a3"></div>
+            Parallel and Perpendicular Lines
+          </div>
+          <div class="topic-body">
+            <div class="two-col">
+              <div class="definition">
+                <div class="def-label">Parallel Lines</div>
+                <p>
+                  Lines in the same plane that never intersect. They have the
+                  <strong>same slope</strong>. Symbol: ∥<br /><em
+                    >Example: y = 3x + 1 and y = 3x − 5 are parallel.</em
+                  >
+                </p>
+              </div>
+              <div class="definition">
+                <div class="def-label">Perpendicular Lines</div>
+                <p>
+                  Lines that intersect at exactly 90°. Their slopes are
+                  <strong>negative reciprocals</strong> of each other. Symbol:
+                  ⊥<br /><em>Example: slopes 2 and −½ are perpendicular.</em>
+                </p>
+              </div>
+            </div>
+            <div class="formula-box">
+              <div class="formula-label">Slope Relationships</div>
+              <div class="formula">
+                Parallel: m₁ = m₂ &nbsp;&nbsp;&nbsp;&nbsp; Perpendicular: m₁ ×
+                m₂ = −1
+              </div>
+            </div>
+            <div class="example-box">
+              <div class="example-label">Worked Example</div>
+              <p>
+                <strong
+                  >Line ℓ has slope 4. What is the slope of a line perpendicular
+                  to ℓ?</strong
+                ><br />
+                Perpendicular slope = −1/4 (flip the fraction, change the sign).
+              </p>
+              <div class="divider"></div>
+              <p>
+                <strong>Are y = −2x + 7 and y = −2x − 3 parallel?</strong><br />
+                Both have slope −2. Yes, they are parallel (different
+                y-intercepts confirm they don't overlap).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #2471a3"></div>
+            Lines Cut by a Transversal
+          </div>
+          <div class="topic-body">
+            <p>
+              A <strong>transversal</strong> is a line that crosses two or more
+              other lines. When it crosses two parallel lines, it creates 8
+              angles with special relationships.
+            </p>
+            <div class="definition">
+              <div class="def-label">Angle Pair Definitions</div>
+              <p>
+                <strong>Corresponding Angles:</strong> Same position at each
+                intersection. If lines are parallel, they are congruent.<br />
+                <strong>Alternate Interior Angles:</strong> On opposite sides of
+                the transversal, between the parallel lines. If lines are
+                parallel, they are congruent.<br />
+                <strong>Alternate Exterior Angles:</strong> On opposite sides of
+                the transversal, outside the parallel lines. If lines are
+                parallel, they are congruent.<br />
+                <strong>Co-Interior (Same-Side Interior) Angles:</strong> On the
+                same side of the transversal, between the lines. If lines are
+                parallel, they are supplementary (sum = 180°).
+              </p>
+            </div>
+            <table class="proof-table">
+              <tr>
+                <th>Angle Pair</th>
+                <th>Location</th>
+                <th>If lines are ∥...</th>
+              </tr>
+              <tr>
+                <td>Corresponding</td>
+                <td>Same position at each crossing</td>
+                <td>Congruent (equal)</td>
+              </tr>
+              <tr>
+                <td>Alternate Interior</td>
+                <td>Opposite sides, inside</td>
+                <td>Congruent (equal)</td>
+              </tr>
+              <tr>
+                <td>Alternate Exterior</td>
+                <td>Opposite sides, outside</td>
+                <td>Congruent (equal)</td>
+              </tr>
+              <tr>
+                <td>Co-Interior (Same-Side Interior)</td>
+                <td>Same side, inside</td>
+                <td>Supplementary (180°)</td>
+              </tr>
+            </table>
+            <div class="example-box">
+              <div class="example-label">Worked Example</div>
+              <p>
+                <strong
+                  >Two parallel lines are cut by a transversal. One co-interior
+                  angle is 72°. Find its co-interior partner.</strong
+                ><br />
+                Co-interior angles are supplementary: 180° − 72° =
+                <strong>108°</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #2471a3"></div>
+            Proving Lines Parallel
+          </div>
+          <div class="topic-body">
+            <p>
+              To prove two lines are parallel, show that one of the following
+              conditions holds (these are the <strong>converses</strong> of the
+              transversal theorems):
+            </p>
+            <ul>
+              <li>Corresponding angles are congruent → lines are parallel</li>
+              <li>
+                Alternate interior angles are congruent → lines are parallel
+              </li>
+              <li>
+                Alternate exterior angles are congruent → lines are parallel
+              </li>
+              <li>Co-interior angles are supplementary → lines are parallel</li>
+            </ul>
+            <div class="example-box">
+              <div class="example-label">Worked Example</div>
+              <p>
+                <strong
+                  >Two lines are cut by a transversal. Alternate interior angles
+                  measure 58° and 58°. Are the lines parallel?</strong
+                ><br />
+                Yes. Because the alternate interior angles are
+                <strong>congruent</strong>, by the Converse of the Alternate
+                Interior Angles Theorem, the lines are parallel.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #2471a3"></div>
+            Writing Linear Equations
+          </div>
+          <div class="topic-body">
+            <h3>Forms of Linear Equations</h3>
+            <div class="two-col">
+              <div class="definition">
+                <div class="def-label">Slope-Intercept Form</div>
+                <p>
+                  <strong>y = mx + b</strong><br />m = slope, b = y-intercept<br /><em
+                    >Best for: graphing</em
+                  >
+                </p>
+              </div>
+              <div class="definition">
+                <div class="def-label">Point-Slope Form</div>
+                <p>
+                  <strong>y − y₁ = m(x − x₁)</strong><br />Use when you know a
+                  point and a slope<br /><em>Best for: writing equations</em>
+                </p>
+              </div>
+            </div>
+            <div class="example-box">
+              <div class="example-label">Worked Examples</div>
+              <p>
+                <strong>Example 1:</strong> Write an equation through (2, 5)
+                with slope 3.<br />
+                y − 5 = 3(x − 2) → y = 3x − 1
+              </p>
+              <div class="divider"></div>
+              <p>
+                <strong>Example 2:</strong> Write an equation through (1, 4)
+                parallel to y = 2x + 7.<br />
+                Parallel → same slope m = 2.<br />
+                y − 4 = 2(x − 1) → y = 2x + 2
+              </p>
+              <div class="divider"></div>
+              <p>
+                <strong>Example 3:</strong> Write an equation through (3, −1)
+                perpendicular to y = 3x + 5.<br />
+                Perpendicular slope = −1/3.<br />
+                y − (−1) = −1/3(x − 3) → y = −x/3 + 0 → y = −x/3
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CHAPTER 5 ===== -->
+      <div class="chapter" id="ch5">
+        <div class="chapter-header ch-triangles">
+          <div class="ch-icon">△</div>
+          <div>
+            <div class="chapter-num">Chapter 5</div>
+            <h2>Triangles</h2>
+            <p>
+              Angle theorems, classification, inequalities, isosceles
+              properties, and triangle centers
+            </p>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #b7540e"></div>
+            Triangle Angle Theorems
+          </div>
+          <div class="topic-body">
+            <div class="theorem">
+              <div class="thm-label">Triangle Angle Sum Theorem</div>
+              <p>
+                The sum of the three interior angles of any triangle is always
+                <strong>180°</strong>. This is true for ALL triangles regardless
+                of shape or size.
+              </p>
+            </div>
+            <div class="formula-box">
+              <div class="formula-label">Triangle Angle Sum</div>
+              <div class="formula">∠A + ∠B + ∠C = 180°</div>
+            </div>
+            <div class="theorem">
+              <div class="thm-label">Exterior Angle Theorem</div>
+              <p>
+                An exterior angle of a triangle equals the sum of the two
+                <strong>non-adjacent (remote) interior angles</strong>.
+              </p>
+            </div>
+            <div class="formula-box">
+              <div class="formula-label">Exterior Angle Theorem</div>
+              <div class="formula">
+                ∠exterior = ∠A + ∠B (where A, B are the two remote interior
+                angles)
+              </div>
+            </div>
+            <div class="example-box">
+              <div class="example-label">Worked Examples</div>
+              <p>
+                <strong>Example 1:</strong> A triangle has angles 55° and 80°.
+                Find the third angle.<br />
+                Third angle = 180° − 55° − 80° = <strong>45°</strong>
+              </p>
+              <div class="divider"></div>
+              <p>
+                <strong>Example 2:</strong> An exterior angle of a triangle is
+                120°. One remote interior angle is 70°. Find the other.<br />
+                Other remote interior angle = 120° − 70° = <strong>50°</strong>
+              </p>
+              <div class="divider"></div>
+              <p>
+                <strong>Example 3 (Algebra):</strong> Angles are (x+10)°, (2x)°,
+                and (x−6)°. Find x.<br />
+                (x+10) + 2x + (x−6) = 180<br />
+                4x + 4 = 180 → x = <strong>44</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #b7540e"></div>
+            Classifying Triangles
+          </div>
+          <div class="topic-body">
+            <h3>By Side Length</h3>
+            <div class="angle-types">
+              <div class="angle-card">
+                <div class="range" style="color: #1a3a6e; font-size: 14px">
+                  All 3 sides equal
+                </div>
+                <div class="name">Equilateral</div>
+                <p style="font-size: 13px; color: #666; margin-top: 4px">
+                  All angles also = 60°
+                </p>
+              </div>
+              <div class="angle-card">
+                <div class="range" style="color: #0e7f6e; font-size: 14px">
+                  2 sides equal
+                </div>
+                <div class="name">Isosceles</div>
+                <p style="font-size: 13px; color: #666; margin-top: 4px">
+                  2 base angles equal
+                </p>
+              </div>
+              <div class="angle-card">
+                <div class="range" style="color: #b7540e; font-size: 14px">
+                  No equal sides
+                </div>
+                <div class="name">Scalene</div>
+                <p style="font-size: 13px; color: #666; margin-top: 4px">
+                  All angles different
+                </p>
+              </div>
+              <div class="angle-card">
+                <div class="range" style="color: #5a3dab; font-size: 14px">
+                  One 90° angle
+                </div>
+                <div class="name">Right Triangle</div>
+                <p style="font-size: 13px; color: #666; margin-top: 4px">
+                  Has a hypotenuse
+                </p>
+              </div>
+            </div>
+            <h3>By Angle Measure</h3>
+            <ul>
+              <li>
+                <strong>Acute Triangle:</strong> All three angles are less than
+                90°
+              </li>
+              <li><strong>Right Triangle:</strong> One angle is exactly 90°</li>
+              <li>
+                <strong>Obtuse Triangle:</strong> One angle is greater than 90°
+              </li>
+              <li>
+                <strong>Equiangular:</strong> All three angles equal 60° (same
+                as equilateral)
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #b7540e"></div>
+            Triangle Inequality Theorems
+          </div>
+          <div class="topic-body">
+            <div class="theorem">
+              <div class="thm-label">Triangle Inequality Theorem</div>
+              <p>
+                For any triangle, the sum of the lengths of any two sides must
+                be <strong>greater than</strong> the length of the third side.
+                If this fails for any combination, the segments cannot form a
+                triangle.
+              </p>
+            </div>
+            <div class="formula-box">
+              <div class="formula-label">Must All Be True</div>
+              <div class="formula">
+                a + b > c &nbsp;&nbsp;&nbsp; a + c > b &nbsp;&nbsp;&nbsp; b + c
+                > a
+              </div>
+            </div>
+            <div class="example-box">
+              <div class="example-label">Worked Examples</div>
+              <p>
+                <strong>Can 5, 8, 11 form a triangle?</strong><br />
+                5 + 8 = 13 > 11 ✓<br />
+                5 + 11 = 16 > 8 ✓<br />
+                8 + 11 = 19 > 5 ✓<br />
+                → <strong>Yes, these form a valid triangle.</strong>
+              </p>
+              <div class="divider"></div>
+              <p>
+                <strong>Can 2, 3, 7 form a triangle?</strong><br />
+                2 + 3 = 5, but 5 is NOT > 7. ✗<br />
+                → <strong>No, these cannot form a triangle.</strong>
+              </p>
+              <div class="divider"></div>
+              <p>
+                <strong>Finding the range of a third side:</strong> Given sides
+                6 and 10, what values can the third side x have?<br />
+                |10 − 6| < x < 10 + 6<br />
+                4 < x < 16
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #b7540e"></div>
+            Isosceles Triangle Theorem
+          </div>
+          <div class="topic-body">
+            <div class="theorem">
+              <div class="thm-label">Isosceles Triangle Theorem</div>
+              <p>
+                If two sides of a triangle are congruent (equal in length), then
+                the angles opposite those sides are also congruent (equal in
+                measure). These equal angles are called
+                <strong>base angles</strong>.
+              </p>
+            </div>
+            <div class="theorem">
+              <div class="thm-label">Converse</div>
+              <p>
+                If two angles of a triangle are congruent, then the sides
+                opposite those angles are also congruent.
+              </p>
+            </div>
+            <div class="example-box">
+              <div class="example-label">Worked Example</div>
+              <p>
+                <strong
+                  >In isosceles triangle ABC, AB = AC. The vertex angle ∠A =
+                  40°. Find the base angles.</strong
+                ><br />
+                Base angles are equal. Let each = x.<br />
+                40 + x + x = 180<br />
+                2x = 140<br />
+                x = <strong>70°</strong><br />
+                So ∠B = ∠C = 70°.
+              </p>
+              <div class="divider"></div>
+              <p>
+                <strong>If ∠B = ∠C = 55° in isosceles △ABC, find ∠A.</strong
+                ><br />
+                ∠A = 180 − 55 − 55 = <strong>70°</strong>
+              </p>
+            </div>
+            <div class="note">
+              <strong>Special case:</strong> An equilateral triangle is a
+              special isosceles triangle where all three sides AND all three
+              angles are equal (each angle = 60°).
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #b7540e"></div>
+            Triangle Centers
+          </div>
+          <div class="topic-body">
+            <p>
+              A triangle has four main "special points" inside (or on) it, each
+              defined by a different set of construction lines.
+            </p>
+            <div class="points-grid">
+              <div class="point-card" style="border-left: 4px solid #1a3a6e">
+                <h4>Centroid (G)</h4>
+                <p>
+                  Where the three <strong>medians</strong> intersect. A median
+                  connects a vertex to the midpoint of the opposite side. The
+                  centroid is always inside the triangle and is the triangle's
+                  <strong>center of gravity</strong> (balance point).<br /><br />
+                  <em>Key fact:</em> The centroid divides each median in a 2:1
+                  ratio from vertex to midpoint.
+                </p>
+              </div>
+              <div class="point-card" style="border-left: 4px solid #0e7f6e">
+                <h4>Orthocenter (H)</h4>
+                <p>
+                  Where the three <strong>altitudes</strong> intersect. An
+                  altitude is a perpendicular segment from a vertex to the
+                  opposite side (or its extension).<br /><br />
+                  <em>Key fact:</em> The orthocenter can be inside (acute
+                  triangle), on (right triangle), or outside (obtuse triangle)
+                  the triangle.
+                </p>
+              </div>
+              <div class="point-card" style="border-left: 4px solid #5a3dab">
+                <h4>Incenter (I)</h4>
+                <p>
+                  Where the three <strong>angle bisectors</strong> intersect. It
+                  is the center of the
+                  <strong>inscribed circle</strong> (incircle) — the largest
+                  circle that fits inside the triangle.<br /><br />
+                  <em>Key fact:</em> The incenter is always inside the triangle.
+                </p>
+              </div>
+              <div class="point-card" style="border-left: 4px solid #b7540e">
+                <h4>Circumcenter (C)</h4>
+                <p>
+                  Where the three <strong>perpendicular bisectors</strong> of
+                  the sides intersect. It is the center of the
+                  <strong>circumscribed circle</strong> (circumcircle) — the
+                  circle that passes through all three vertices.<br /><br />
+                  <em>Key fact:</em> Can be inside, on, or outside the triangle
+                  depending on type.
+                </p>
+              </div>
+            </div>
+            <div class="note">
+              <strong>Memory trick: </strong>"<em>A</em>ltitudes →
+              ort<em>H</em>ocenter. <em>M</em>edians → centroid. <em>A</em>ngle
+              bisectors → <em>I</em>ncenter. Per<em>P</em>endicular bisectors →
+              circu<em>M</em>center."
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CHAPTER 6 ===== -->
+      <div class="chapter" id="ch6">
+        <div class="chapter-header ch-congruence">
+          <div class="ch-icon">≅</div>
+          <div>
+            <div class="chapter-num">Chapter 6</div>
+            <h2>Triangle Congruence</h2>
+            <p>
+              Proving triangles identical using side and angle relationships
+            </p>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #2d7a3e"></div>
+            Congruent Figures
+          </div>
+          <div class="topic-body">
+            <div class="definition">
+              <div class="def-label">Congruent Figures</div>
+              <p>
+                Two figures are <strong>congruent (≅)</strong> if they have
+                exactly the same shape and size. All corresponding sides are
+                equal in length and all corresponding angles are equal in
+                measure.
+              </p>
+            </div>
+            <div class="theorem">
+              <div class="thm-label">CPCTC</div>
+              <p>
+                <strong
+                  >Corresponding Parts of Congruent Triangles are
+                  Congruent.</strong
+                >
+                Once you prove two triangles are congruent, you can conclude
+                that any corresponding parts are also congruent. This is
+                frequently used as a reason in proofs.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #2d7a3e"></div>
+            Triangle Congruence Theorems
+          </div>
+          <div class="topic-body">
+            <p>
+              You do not need to show all six pairs of equal parts (3 sides + 3
+              angles) to prove triangles congruent. The following shortcuts
+              work:
+            </p>
+            <div class="congruence-grid">
+              <div class="cong-card">
+                <div class="abbr">SSS</div>
+                <div class="full">
+                  Three pairs of corresponding <strong>sides</strong> are equal
+                </div>
+              </div>
+              <div class="cong-card">
+                <div class="abbr">SAS</div>
+                <div class="full">
+                  Two sides and the <strong>included</strong> angle between them
+                  are equal
+                </div>
+              </div>
+              <div class="cong-card">
+                <div class="abbr">ASA</div>
+                <div class="full">
+                  Two angles and the <strong>included</strong> side between them
+                  are equal
+                </div>
+              </div>
+              <div class="cong-card">
+                <div class="abbr">AAS</div>
+                <div class="full">
+                  Two angles and a <strong>non-included</strong> side are equal
+                </div>
+              </div>
+              <div class="cong-card">
+                <div class="abbr">HL</div>
+                <div class="full">
+                  <strong>Right triangles only:</strong> Hypotenuse and one Leg
+                  are equal
+                </div>
+              </div>
+              <div
+                class="cong-card"
+                style="background: #fdf0ec; border: 1px solid #f0b090"
+              >
+                <div class="abbr" style="color: #c64b2d">✗ SSA</div>
+                <div class="full" style="color: #8b2710">
+                  NOT a valid congruence theorem (ambiguous case)
+                </div>
+              </div>
+            </div>
+            <div class="warning-box">
+              <strong>Important!</strong> SSA (two sides and a non-included
+              angle) does NOT guarantee congruence — there may be two possible
+              triangles. The only exception is HL for right triangles.
+            </div>
+            <div class="example-box">
+              <div class="example-label">Identifying the Right Theorem</div>
+              <p><strong>Which theorem applies?</strong></p>
+              <ul>
+                <li>AB = DE, BC = EF, AC = DF → <strong>SSS</strong></li>
+                <li>
+                  ∠A = ∠D, AB = DE, ∠B = ∠E →
+                  <strong>ASA</strong> (angle-side-angle with included side
+                  AB/DE)
+                </li>
+                <li>
+                  ∠A = ∠D, ∠B = ∠E, BC = EF (non-included) →
+                  <strong>AAS</strong>
+                </li>
+                <li>
+                  Right triangles, hypotenuse AB = DE, leg AC = DF →
+                  <strong>HL</strong>
+                </li>
+              </ul>
+            </div>
+            <div class="example-box">
+              <div class="example-label">Two-Column Proof Using SAS</div>
+              <p>
+                <strong>Given:</strong> M is the midpoint of both diagonals.
+                Prove: △ABM ≅ △CDM
+              </p>
+              <table class="proof-table" style="margin-top: 12px">
+                <tr>
+                  <th>Statements</th>
+                  <th>Reasons</th>
+                </tr>
+                <tr>
+                  <td>1. M is the midpoint of both diagonals</td>
+                  <td>Given</td>
+                </tr>
+                <tr>
+                  <td>2. AM = CM and BM = DM</td>
+                  <td>Definition of midpoint</td>
+                </tr>
+                <tr>
+                  <td>3. ∠AMB = ∠CMD</td>
+                  <td>Vertical angles are congruent</td>
+                </tr>
+                <tr>
+                  <td>4. △ABM ≅ △CDM</td>
+                  <td>SAS (steps 2, 3, 2)</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CHAPTER 7 ===== -->
+      <div class="chapter" id="ch7">
+        <div class="chapter-header ch-similarity">
+          <div class="ch-icon">∼</div>
+          <div>
+            <div class="chapter-num">Chapter 7</div>
+            <h2>Dilations and Similarity</h2>
+            <p>
+              Scaling figures and proving triangles similar using AA, SSS, and
+              SAS
+            </p>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #9a4d00"></div>
+            Dilations
+          </div>
+          <div class="topic-body">
+            <div class="definition">
+              <div class="def-label">Dilation</div>
+              <p>
+                A dilation is a transformation that produces a figure similar to
+                the original by <strong>scaling</strong> all distances from a
+                fixed point called the <strong>center of dilation</strong> by a
+                number called the <strong>scale factor (k)</strong>.
+              </p>
+            </div>
+            <div class="formula-box">
+              <div class="formula-label">
+                Dilation Rule (centered at origin)
+              </div>
+              <div class="formula">(x, y) → (kx, ky)</div>
+            </div>
+            <ul>
+              <li>
+                If <strong>k > 1</strong>: the image is an
+                <strong>enlargement</strong> (larger than original)
+              </li>
+              <li>
+                If <strong>0 < k < 1</strong>: the image is a
+                <strong>reduction</strong> (smaller than original)
+              </li>
+              <li>
+                If <strong>k = 1</strong>: the image is congruent to the
+                original
+              </li>
+              <li>
+                If <strong>k < 0</strong>: the image is on the opposite side of
+                the center
+              </li>
+            </ul>
+            <div class="example-box">
+              <div class="example-label">Worked Example</div>
+              <p>
+                <strong
+                  >Dilate triangle A(2,4), B(6,4), C(4,8) by scale factor k =
+                  1/2 centered at origin.</strong
+                ><br />
+                A' = (1, 2) &nbsp; B' = (3, 2) &nbsp; C' = (2, 4)
+              </p>
+              <div class="divider"></div>
+              <p>
+                <strong>Dilate point P(−3, 5) by k = 3.</strong><br />
+                P' = (3×−3, 3×5) = (−9, 15)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #9a4d00"></div>
+            Similar Figures
+          </div>
+          <div class="topic-body">
+            <div class="definition">
+              <div class="def-label">Similar Figures (~)</div>
+              <p>
+                Two figures are <strong>similar</strong> if they have the same
+                shape but not necessarily the same size. In similar figures,
+                corresponding angles are equal and corresponding sides are
+                <strong>proportional</strong>.
+              </p>
+            </div>
+            <div class="formula-box">
+              <div class="formula-label">Proportion of Similar Figures</div>
+              <div class="formula">
+                AB/DE = BC/EF = AC/DF = k (scale factor)
+              </div>
+            </div>
+            <div class="example-box">
+              <div class="example-label">Worked Example</div>
+              <p>
+                <strong
+                  >△ABC ~ △DEF with AB = 6, BC = 9, DE = 4. Find EF.</strong
+                ><br />
+                Set up proportion: AB/DE = BC/EF<br />
+                6/4 = 9/EF<br />
+                6 × EF = 4 × 9 = 36<br />
+                EF = <strong>6</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #9a4d00"></div>
+            Triangle Similarity Theorems
+          </div>
+          <div class="topic-body">
+            <div class="congruence-grid">
+              <div class="cong-card">
+                <div class="abbr" style="color: #9a4d00">AA</div>
+                <div class="full">
+                  Two pairs of corresponding angles are equal. (Third angle must
+                  also match since all sum to 180°)
+                </div>
+              </div>
+              <div class="cong-card">
+                <div class="abbr" style="color: #9a4d00">SSS~</div>
+                <div class="full">
+                  All three pairs of sides are in the same proportion (ratio)
+                </div>
+              </div>
+              <div class="cong-card">
+                <div class="abbr" style="color: #9a4d00">SAS~</div>
+                <div class="full">
+                  Two sides are proportional AND the included angle between them
+                  is equal
+                </div>
+              </div>
+            </div>
+            <div class="note">
+              <strong>AA is the most commonly used</strong> similarity theorem.
+              If you can show two angles of one triangle equal two angles of
+              another, the triangles are automatically similar.
+            </div>
+            <div class="example-box">
+              <div class="example-label">Worked Examples</div>
+              <p>
+                <strong>Example 1 (AA):</strong> △ABC has ∠A = 50°, ∠B = 70°.
+                △DEF has ∠D = 50°, ∠E = 70°. Are they similar?<br />
+                Yes! Two pairs of angles match →
+                <strong>AA Similarity</strong> → △ABC ~ △DEF
+              </p>
+              <div class="divider"></div>
+              <p>
+                <strong>Example 2 (SSS~):</strong> △ABC has sides 4, 6, 8. △DEF
+                has sides 6, 9, 12. Are they similar?<br />
+                4/6 = 2/3, 6/9 = 2/3, 8/12 = 2/3. All ratios equal →
+                <strong>SSS Similarity</strong> → △ABC ~ △DEF
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #9a4d00"></div>
+            Right Triangle Similarity
+          </div>
+          <div class="topic-body">
+            <div class="theorem">
+              <div class="thm-label">Geometric Mean (Altitude) Theorem</div>
+              <p>
+                When an altitude is drawn from the right angle of a right
+                triangle to the hypotenuse, it creates three similar triangles:
+                the original and the two smaller ones. This relationship leads
+                to the <strong>geometric mean</strong>.
+              </p>
+            </div>
+            <div class="formula-box">
+              <div class="formula-label">Key Relationships</div>
+              <div class="formula">
+                altitude² = (left hyp. segment) × (right hyp. segment)
+              </div>
+            </div>
+            <div class="example-box">
+              <div class="example-label">Worked Example</div>
+              <p>
+                <strong
+                  >In right triangle ABC, altitude CD is drawn to hypotenuse AB.
+                  AD = 4 and DB = 9. Find CD.</strong
+                ><br />
+                CD² = AD × DB = 4 × 9 = 36<br />
+                CD = √36 = <strong>6</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="topic-title">
+            <div class="dot" style="background: #9a4d00"></div>
+            Directed Line Segments
+          </div>
+          <div class="topic-body">
+            <p>
+              A <strong>directed line segment</strong> is a segment with a
+              specific direction, from point A to point B. Unlike a regular
+              segment (which has no direction), directed line segments are used
+              in coordinate geometry to model movement and partition segments.
+            </p>
+            <div class="definition">
+              <div class="def-label">Partitioning a Segment</div>
+              <p>
+                To divide segment AB so that the point P is at ratio m:n from A
+                to B:
+              </p>
+            </div>
+            <div class="formula-box">
+              <div class="formula-label">Partition Formula</div>
+              <div class="formula">P = A + [m/(m+n)] × (B − A)</div>
+            </div>
+            <div class="example-box">
+              <div class="example-label">Worked Example</div>
+              <p>
+                <strong
+                  >Find the point that divides A(1, 2) to B(7, 8) in a ratio of
+                  1:2.</strong
+                ><br />
+                m = 1, n = 2 → m/(m+n) = 1/3<br />
+                x = 1 + (1/3)(7−1) = 1 + 2 = <strong>3</strong><br />
+                y = 2 + (1/3)(8−2) = 2 + 2 = <strong>4</strong><br />
+                Point P = (3, 4)
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div
+        style="
+          margin-top: 60px;
+          padding-top: 30px;
+          border-top: 2px solid var(--border);
+          text-align: center;
+        "
+      >
+        <p
+          style="font-size: 13px; color: var(--text-muted); margin-bottom: 6px"
+        >
+          Complete Euclidean Geometry Study Guide
+        </p>
+        <p style="font-size: 12px; color: #aaa">
+          All topics covered: Foundations · Angles · Transformations · Lines ·
+          Triangles · Congruence · Similarity
+        </p>
+      </div>
+    </div>
+    <!-- end .content -->
+  </body>
+</html>
